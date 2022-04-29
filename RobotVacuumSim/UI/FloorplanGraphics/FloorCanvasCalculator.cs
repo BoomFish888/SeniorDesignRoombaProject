@@ -14,8 +14,8 @@ namespace VacuumSim.UI.FloorplanGraphics
     /// </summary>
     public class FloorCanvasCalculator
     {
-        public static int frameCount { get; set; } = 0; // Count of frames displayed during a simulation
-        public const int framesPerSimSecond = 5; // Number of frames per simulation second
+        public static int movementCount { get; set; } = 0; // Count of frames displayed during a simulation
+        public const int movementsPerSimSecond = 5; // Number of movements per simulation second
 
         /// <summary>
         /// Calculates the endpoints of the vacuum's whiskers
@@ -73,20 +73,20 @@ namespace VacuumSim.UI.FloorplanGraphics
         /// <returns> The distance (in screen units) traveled per frame </returns>
         public static float GetDistanceTraveledPerFrame(float vacuumSpeedInInches)
         {
-            return ConvertInchesToScreenUnits(vacuumSpeedInInches) / framesPerSimSecond;
+            return ConvertInchesToScreenUnits(vacuumSpeedInInches) / movementsPerSimSecond;
         }
 
         /// <summary>
-        /// Updates simulation data after a frame update
-        /// After "framesPerSimSecond" frame updates, simulation time can be incremented, and battery left decremented
-        /// This is because "framesPerSimSecond" frame updates = 1 simulation second
+        /// Updates simulation data after a vacuum movement
+        /// After "movementsPerSimSecond" vacuum movements, simulation time can be incremented, and battery left decremented
+        /// This is because there are "movementsPerSimSecond" number of movements in 1 simulation second
         /// </summary>
         /// <param name="VacDisplay"> The display of the vacuum onto FloorCanvas </param>
         public static void UpdateSimulationData(VacuumDisplay VacDisplay)
         {
-            frameCount++;
+            movementCount++;
 
-            if (frameCount % framesPerSimSecond == 0)
+            if (movementCount % movementsPerSimSecond == 0 && VacDisplay.batterySecondsRemaining > 0)
             {
                 Simulation.simTimeElapsed++;
                 VacDisplay.batterySecondsRemaining--;

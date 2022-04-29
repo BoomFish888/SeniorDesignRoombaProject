@@ -14,7 +14,8 @@ namespace VacuumSim.Components
     /// </summary>
     public class VSnakeAlgorithm : VacuumController
     {
-        public override void ExecVPath(VacuumDisplay VacDisplay, FloorplanLayout floorPlan, CollisionHandler collisionHandler, FloorCleaner floorCleaner, Vacuum ActualVacuumData, object sender, EventArgs e)
+
+        public override void ExecVPath(VacuumDisplay VacDisplay, FloorplanLayout floorPlan, CollisionHandler collisionHandler, FloorCleaner floorCleaner, Vacuum ActualVacuumData)
         {
             //Debug.WriteLine("running snake algorithm");
 

@@ -1,0 +1,71 @@
+﻿<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="InstructionsTextBox.Text" xml:space="preserve">
+    <value>Welcome to the Robot Vacuum Simulator! This purpose of this software is to test the performance of robot vacuums under varying conditions. These conditions include the layout of the house, floor covering, vacuum pathing algorithm, vacuum speed, vacuum battery life, and vacuum and vacuum whisker efficiency. Our development team is composed of Madelyn Wiggins, Benny Stellhorn, Michael Redman, and Ryan Lynch.
+
+The first step is to create a floor plan. You can either start from scratch or start from a pre-loaded floor plan. There are two types of pre-loaded floor plans: a floor plan that you have created and saved, and the default floor plan created by the development team. You can then add/remove obstacles onto the floor plan. This can be achieved by selecting an obstacle (i.e. room, chair, table, chest) and then clicking and dragging the obstacle onto the floor plan. Chairs, tables, and rooms can span multiple tiles, and their dimensions can be changed by increasing the values in the respective width and height selector widgets. To remove obstacles, click on the "Eraser Mode" button to turn on eraser mode. Then, you can click on obstacles on the floor plan to remove them. Once you are satisfied with your floor plan, press "Finish Floor Plan". You can always go back to editing the floor plan by pressing "Edit Floor Plan". Pressing "Finish Floor Plan" will allow you to start setting the vacuum's attributes.
+
+Customize the vacuum by utilizing the different options in the "Vacuum Attributes" section. Place the vacuum onto the floor plan by clicking and dragging it onto a valid location. Once the vacuum is placed, you can set the simulation speed and start the simulation. Note that if you choose to run all algorithms, four full simulations - one for each algorithm - will run. Stop the simulation at any time by pressing "Stop Simulation". The simulation will automatically stop when the vacuum's battery runs out.
+
+As the simulation is running, a trail will be shown behind the vacuum showing what areas of the house have been cleaned so far by the vacuum. Once the simulation ends, the results will get saved into a JSON file which can be viewed any time a simulation is not running. We also display a heat map showing how well each area of the house was cleaned by the vacuum. The more red a spot is, the better the vacuum cleaned it. The more blue a spot is, the worse the vacuum cleaned it. You can proceed to run another simulation by pressing "Yes" when prompted.
+
+To pull up simulation results from previous runs, select "Load Simulation Report" under the "Report Files" section. From there, a file dialog will appear and you can navigate to the location of the a simulation results JSON file you previously saved and select that file. You will then see the results of that simulation run. You can also open the results of other runs by pressing the "+" icon at the top. If you want to load the floor plan for the run you're currently viewing, select "Load this floorplan" at the bottom. If you want to load both the floor plan and the simulation settings for that run, select "Load this floorplan + settings".</value>
+  </data>
+</root>

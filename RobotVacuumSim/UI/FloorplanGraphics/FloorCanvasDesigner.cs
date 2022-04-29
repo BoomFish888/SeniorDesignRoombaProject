@@ -71,7 +71,7 @@ namespace VacuumSim.UI.FloorplanGraphics
             {
                 for (int j = 0; j < CurrentLayout.numTilesPerCol; j++)
                 {
-                    if ((CurrentLayout.floorLayout[i, j].obstacle == ObstacleType.Floor ))//CurrentLayout.floorLayout[i, j].obstacle == ObstacleType.Doorway)) // Blank tile
+                    if ((CurrentLayout.floorLayout[i, j].obstacle == ObstacleType.Floor))//CurrentLayout.floorLayout[i, j].obstacle == ObstacleType.Doorway)) // Blank tile
                     {
                         PaintTile(i, j, FloorTextureBrush, CanvasEditor);
                     }
@@ -350,11 +350,11 @@ namespace VacuumSim.UI.FloorplanGraphics
 
         /// <summary>
         /// Updates floorplan after the user changes the house width.
-        /// 
+        ///
         /// If the width was increased, the only change that happens is
         /// more house boundary walls get drawn and rooms connected to
         /// the boundary wall get their own boundary wall.
-        /// 
+        ///
         /// If the width was decreased, the affected boundary walls will get set to floor tiles
         /// and any affected obstacle will be removed, with the exception of rooms. Rooms will just be
         /// decreased in size. However, if a room is reduced to a single column of wall tiles or is
@@ -416,11 +416,11 @@ namespace VacuumSim.UI.FloorplanGraphics
 
         /// <summary>
         /// Updates floorplan after the user changes the house height.
-        /// 
+        ///
         /// If the height was increased, the only change that happens is
         /// more house boundary walls get drawn and rooms previously connected to
         /// the boundary wall will now get their own boundary wall.
-        /// 
+        ///
         /// If the height was decreased, the affected boundary walls will get set to floor tiles
         /// and any affected obstacle will be removed, with the exception of rooms. Rooms will just be
         /// decreased in size. However, if a room is reduced to a single row of wall tiles or is
@@ -735,6 +735,8 @@ namespace VacuumSim.UI.FloorplanGraphics
                     rightTile.obstacle = ob;
                 }
             }
+            // Increment number of rooms
+            FloorplanHouseDesigner.numRooms++;
         }
 
         /// <summary>
@@ -783,7 +785,7 @@ namespace VacuumSim.UI.FloorplanGraphics
                         {
                             FloorplanHouseDesigner.ModifyTileBasedOnIndices(i, j, ObstacleType.Floor);
                         }
-                    }     
+                    }
                 }
             }
 
@@ -832,7 +834,7 @@ namespace VacuumSim.UI.FloorplanGraphics
                 for (int j = yTileIndex; j < yTileIndex + chairTableHeightInTiles; j++)
                 {
                     // Check if tile is out of bounds or non-floor obstacle already present at this tile
-                    if ((i >= FloorplanHouseDesigner.numTilesPerRow || j >= FloorplanHouseDesigner.numTilesPerCol) || 
+                    if ((i >= FloorplanHouseDesigner.numTilesPerRow || j >= FloorplanHouseDesigner.numTilesPerCol) ||
                         FloorplanHouseDesigner.floorLayout[i, j].obstacle != ObstacleType.Floor || FloorplanHouseDesigner.floorLayout[i, j].groupID != -1)
                         successAddingObstacle = false;
                 }
@@ -872,7 +874,7 @@ namespace VacuumSim.UI.FloorplanGraphics
             successAddingObstacle = true; // Initially set to true, could get changed if obstacle is in invalid position
 
             // Check if chest can be placed at this location
-            if ((xTileIndex >= FloorplanHouseDesigner.numTilesPerRow || yTileIndex >= FloorplanHouseDesigner.numTilesPerCol) || 
+            if ((xTileIndex >= FloorplanHouseDesigner.numTilesPerRow || yTileIndex >= FloorplanHouseDesigner.numTilesPerCol) ||
                 FloorplanHouseDesigner.floorLayout[xTileIndex, yTileIndex].obstacle != ObstacleType.Floor || FloorplanHouseDesigner.floorLayout[xTileIndex, yTileIndex].groupID != -1)
                 successAddingObstacle = false;
 
@@ -951,7 +953,6 @@ namespace VacuumSim.UI.FloorplanGraphics
         {
             if (currentObstacleBeingAdded == ObstacleType.Room)
                 currentObstacleBeingAdded = ObstacleType.Wall; // So we know to create wall tiles
-
 
             for (int i = 0; i < FloorplanHouseDesigner.numTilesPerRow; i++)
             {
@@ -1036,7 +1037,6 @@ namespace VacuumSim.UI.FloorplanGraphics
             Tile rightTile = CurrentLayout.floorLayout[x + 1, y];
             Tile belowTile = CurrentLayout.floorLayout[x, y + 1];
             Tile aboveTile = CurrentLayout.floorLayout[x, y - 1];
-
 
             return (leftTile.groupID != -1 && aboveTile.groupID != -1 && !IsDoorwayTile(leftTile) && !IsDoorwayTile(aboveTile)) || // Left and above
             (leftTile.groupID != -1 && belowTile.groupID != -1 && !IsDoorwayTile(leftTile) && !IsDoorwayTile(belowTile)) || // Left and below

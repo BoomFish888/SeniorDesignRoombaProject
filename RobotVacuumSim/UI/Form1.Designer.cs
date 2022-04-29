@@ -1,4 +1,3 @@
-
 using VacuumSim.Components;
 
 namespace VacuumSim
@@ -88,7 +87,6 @@ namespace VacuumSim
             this.YesRunAnotherSimulationButton = new System.Windows.Forms.Button();
             this.LoadSaveSimSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.LoadSimulationButton = new System.Windows.Forms.Button();
-            this.SaveSimulationButton = new System.Windows.Forms.Button();
             this.SimulationControlLabel = new System.Windows.Forms.Label();
             this.SimulationSpeedLabel = new System.Windows.Forms.Label();
             this.StartSimulationButton = new System.Windows.Forms.Button();
@@ -102,8 +100,7 @@ namespace VacuumSim
             this.BatteryLeftLabel = new System.Windows.Forms.Label();
             this.BatteryLeftTitleLabel = new System.Windows.Forms.Label();
             this.FloorCanvas = new System.Windows.Forms.PictureBox();
-            this.VacuumWhiskersTimer = new System.Windows.Forms.Timer(this.components);
-            this.VacAlgorithmTimer = new System.Windows.Forms.Timer(this.components);
+            this.VacDisplayTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.LeftPane)).BeginInit();
             this.LeftPane.Panel1.SuspendLayout();
             this.LeftPane.Panel2.SuspendLayout();
@@ -570,7 +567,6 @@ namespace VacuumSim
             this.FriezeCutPileRadioButton.Name = "FriezeCutPileRadioButton";
             this.FriezeCutPileRadioButton.Size = new System.Drawing.Size(101, 19);
             this.FriezeCutPileRadioButton.TabIndex = 3;
-            this.FriezeCutPileRadioButton.TabStop = true;
             this.FriezeCutPileRadioButton.Text = "Frieze-Cut Pile";
             this.FriezeCutPileRadioButton.UseVisualStyleBackColor = true;
             this.FriezeCutPileRadioButton.CheckedChanged += new System.EventHandler(this.FloorTypeControlChanged);
@@ -583,7 +579,6 @@ namespace VacuumSim
             this.CutPileRadioButton.Name = "CutPileRadioButton";
             this.CutPileRadioButton.Size = new System.Drawing.Size(66, 19);
             this.CutPileRadioButton.TabIndex = 2;
-            this.CutPileRadioButton.TabStop = true;
             this.CutPileRadioButton.Text = "Cut Pile";
             this.CutPileRadioButton.UseVisualStyleBackColor = true;
             this.CutPileRadioButton.CheckedChanged += new System.EventHandler(this.FloorTypeControlChanged);
@@ -596,7 +591,6 @@ namespace VacuumSim
             this.LoopPileRadioButton.Name = "LoopPileRadioButton";
             this.LoopPileRadioButton.Size = new System.Drawing.Size(74, 19);
             this.LoopPileRadioButton.TabIndex = 1;
-            this.LoopPileRadioButton.TabStop = true;
             this.LoopPileRadioButton.Text = "Loop Pile";
             this.LoopPileRadioButton.UseVisualStyleBackColor = true;
             this.LoopPileRadioButton.CheckedChanged += new System.EventHandler(this.FloorTypeControlChanged);
@@ -604,6 +598,7 @@ namespace VacuumSim
             // HardWoodRadioButton
             // 
             this.HardWoodRadioButton.AutoSize = true;
+            this.HardWoodRadioButton.Checked = true;
             this.HardWoodRadioButton.Location = new System.Drawing.Point(6, 20);
             this.HardWoodRadioButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.HardWoodRadioButton.Name = "HardWoodRadioButton";
@@ -938,36 +933,23 @@ namespace VacuumSim
             // LoadSaveSimSettingsGroupBox
             // 
             this.LoadSaveSimSettingsGroupBox.Controls.Add(this.LoadSimulationButton);
-            this.LoadSaveSimSettingsGroupBox.Controls.Add(this.SaveSimulationButton);
-            this.LoadSaveSimSettingsGroupBox.Enabled = false;
             this.LoadSaveSimSettingsGroupBox.Location = new System.Drawing.Point(3, 219);
             this.LoadSaveSimSettingsGroupBox.Name = "LoadSaveSimSettingsGroupBox";
             this.LoadSaveSimSettingsGroupBox.Size = new System.Drawing.Size(474, 87);
             this.LoadSaveSimSettingsGroupBox.TabIndex = 16;
             this.LoadSaveSimSettingsGroupBox.TabStop = false;
-            this.LoadSaveSimSettingsGroupBox.Text = "Load/Save";
+            this.LoadSaveSimSettingsGroupBox.Text = "Report Files";
             // 
             // LoadSimulationButton
             // 
-            this.LoadSimulationButton.Enabled = false;
             this.LoadSimulationButton.Location = new System.Drawing.Point(7, 32);
             this.LoadSimulationButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LoadSimulationButton.Name = "LoadSimulationButton";
             this.LoadSimulationButton.Size = new System.Drawing.Size(161, 22);
             this.LoadSimulationButton.TabIndex = 14;
-            this.LoadSimulationButton.Text = "Load Simulation Settings";
+            this.LoadSimulationButton.Text = "Load Simulation Report";
             this.LoadSimulationButton.UseVisualStyleBackColor = true;
-            // 
-            // SaveSimulationButton
-            // 
-            this.SaveSimulationButton.Enabled = false;
-            this.SaveSimulationButton.Location = new System.Drawing.Point(7, 59);
-            this.SaveSimulationButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.SaveSimulationButton.Name = "SaveSimulationButton";
-            this.SaveSimulationButton.Size = new System.Drawing.Size(161, 22);
-            this.SaveSimulationButton.TabIndex = 15;
-            this.SaveSimulationButton.Text = "Save Simulation Settings";
-            this.SaveSimulationButton.UseVisualStyleBackColor = true;
+            this.LoadSimulationButton.Click += new System.EventHandler(this.LoadSimulationButton_Click);
             // 
             // SimulationControlLabel
             // 
@@ -1137,15 +1119,10 @@ namespace VacuumSim
             this.FloorCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FloorCanvas_Click);
             this.FloorCanvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FloorCanvas_MouseUp);
             // 
-            // VacuumWhiskersTimer
+            // VacDisplayTimer
             // 
-            this.VacuumWhiskersTimer.Interval = 250;
-            this.VacuumWhiskersTimer.Tick += new System.EventHandler(this.VacuumWhiskersTimer_Tick);
-            // 
-            // VacAlgorithmTimer
-            // 
-            this.VacAlgorithmTimer.Interval = 1000;
-            this.VacAlgorithmTimer.Tick += new System.EventHandler(this.VacAlgorithmTimer_Tick);
+            this.VacDisplayTimer.Interval = 1;
+            this.VacDisplayTimer.Tick += new System.EventHandler(this.VacDisplayTimer_Tick);
             // 
             // Form1
             // 
@@ -1202,6 +1179,7 @@ namespace VacuumSim
         }
 
         #endregion
+
         private System.Windows.Forms.SplitContainer LeftPane;
         private System.Windows.Forms.SplitContainer ControlsPane;
         private System.Windows.Forms.Label SimulationControlLabel;
@@ -1230,13 +1208,11 @@ namespace VacuumSim
         private System.Windows.Forms.Label VacuumAttributesLabel;
         private System.Windows.Forms.SplitContainer CenterSplitPane;
         private System.Windows.Forms.GroupBox LoadSaveFloorplanGroupBox;
-        private System.Windows.Forms.Button SaveSimulationButton;
         private System.Windows.Forms.Button LoadSimulationButton;
         private System.Windows.Forms.Button SaveFloorplanButton;
         private System.Windows.Forms.Button LoadDefaultFloorplanButton;
         private System.Windows.Forms.PictureBox FloorCanvas;
         private System.Windows.Forms.ComboBox ObstacleSelector;
-        private System.Windows.Forms.Timer VacuumWhiskersTimer;
         private System.Windows.Forms.Label BatteryLeftLabel;
         private System.Windows.Forms.Label BatteryLeftTitleLabel;
         private System.Windows.Forms.Button LoadSavedFloorplanButton;
@@ -1254,7 +1230,7 @@ namespace VacuumSim
         private System.Windows.Forms.NumericUpDown ChairTableHeightSelector;
         private System.Windows.Forms.NumericUpDown ChairTableWidthSelector;
         private System.Windows.Forms.Button EraserModeButton;
-        public System.Windows.Forms.Timer VacAlgorithmTimer;
+        public System.Windows.Forms.Timer VacDisplayTimer;
         private System.Windows.Forms.Label WhiskersEfficiencyTitleLabel;
         private System.Windows.Forms.Label VacuumEfficiencyTitleLabel;
         private System.Windows.Forms.TrackBar WhiskersEfficiencySlider;
@@ -1275,4 +1251,3 @@ namespace VacuumSim
         private System.Windows.Forms.Label CurrentAlgorithmLabel;
     }
 }
-
